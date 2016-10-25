@@ -14,15 +14,15 @@ public class ManagerSession implements HttpSessionListener {
 
 	@Override
 	public void sessionCreated(HttpSessionEvent ev) {
-
+		System.out.println("SESSÃO CRIADA: " + ev.hashCode());
 		try {
 			HttpSession sessao = ev.getSession();
 			sessao.setAttribute("cf", new ConnectFilemaker());
-			sessao.setAttribute("connectionBD",
-					((ConnectFilemaker) sessao.getAttribute("cf")).getCon().createStatement());
-			sessao.setAttribute("connectionBD2",
-					((ConnectFilemaker) sessao.getAttribute("cf")).getCon().createStatement());
+			sessao.setAttribute("connectionBD", ((ConnectFilemaker) sessao.getAttribute("cf")).getCon().createStatement());
+			sessao.setAttribute("connectionBD2", ((ConnectFilemaker) sessao.getAttribute("cf")).getCon().createStatement());
 		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e){
 			e.printStackTrace();
 		}
 
@@ -56,7 +56,7 @@ public class ManagerSession implements HttpSessionListener {
 		}
 		
 		
-		System.out.println("A SESSÃO FOI ENCERRADA");
+		System.out.println("A SESSÃO FOI ENCERRADA: " + ev.hashCode());
 	}
 
 	public void createConnection() {

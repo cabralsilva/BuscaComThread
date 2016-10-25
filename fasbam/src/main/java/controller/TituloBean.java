@@ -28,7 +28,7 @@ public class TituloBean implements Serializable {
 		HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 		tituloDetalhe = (Titulo) sessao.getAttribute("tituloSelected");
 		if (tituloDetalhe == null) FacesContext.getCurrentInstance().getExternalContext().dispatch("/index.xhtml?faces-redirect=true");
-//		System.out.println(tituloDetalhe);
+		System.out.println(tituloDetalhe);
 	}
 
 	public String voltar(){

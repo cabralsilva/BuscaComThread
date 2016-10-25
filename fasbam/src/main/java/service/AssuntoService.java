@@ -48,8 +48,7 @@ public class AssuntoService {
 			rs.close();
 //			thread = new ThreadConnection(sessao);
 		} catch (Exception e) {
-			System.out.println("Erro ao busca lista de Autores + " + e);
-			System.out.println("Erro ao busca lista de Autores + " + e);
+			System.out.println("Erro ao busca lista de Assuntos + " + e);
 			((Statement) sessao.getAttribute("connectionBD")).close();
 			((Statement) sessao.getAttribute("connectionBD2")).close();
 			((ConnectFilemaker) sessao.getAttribute("cf")).getCon().close();

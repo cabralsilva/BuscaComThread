@@ -441,29 +441,34 @@ public class IndexBean implements Serializable {
 	}
 
 	public void exibindo() {
-		HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-		dadosPaginacao = "Exibindo de " + sessao.getAttribute("indicePrimeiro") + " até "
-				+ sessao.getAttribute("indiceUltimo");
+		if(tituloPesquisa.getTextoPesquisa().length() >= 3){
+			HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+			dadosPaginacao = "Exibindo de " + sessao.getAttribute("indicePrimeiro") + " até "
+					+ sessao.getAttribute("indiceUltimo");
 
-		String retorno = "Foram encontrados " + totalRegistros + " registros";
+			String retorno = "Foram encontrados " + totalRegistros + " registros";
 
-		if (tituloPesquisa != null) {
-			if (!((tituloPesquisa.getTextoPesquisa() == "") && (tituloPesquisa.getIdiomaTitulo() == null)
-					&& (tituloPesquisa.getCampo() == null) && (tituloPesquisa.getTipoTitulo() == null))) {
-				if (tituloPesquisa.getTextoPesquisa() != "")
-					retorno += " por '" + tituloPesquisa.getTextoPesquisa() + "'";
-				if (tituloPesquisa.getIdiomaTitulo() != null)
-					retorno += " no idioma '" + tituloPesquisa.getIdiomaTitulo().getNomeIdioma() + "'";
-				if (tituloPesquisa.getCampo() != null)
-					retorno += " no campo '" + tituloPesquisa.getCampo().getDescricao() + "'";
-				else
-					retorno += " em todos os campos";
-				if (tituloPesquisa.getTipoTitulo() != null)
-					retorno += " do tipo '" + tituloPesquisa.getTipoTitulo().getNome() + "'";
+			if (tituloPesquisa != null) {
+				if (!((tituloPesquisa.getTextoPesquisa() == "") && (tituloPesquisa.getIdiomaTitulo() == null)
+						&& (tituloPesquisa.getCampo() == null) && (tituloPesquisa.getTipoTitulo() == null))) {
+					if (tituloPesquisa.getTextoPesquisa() != "")
+						retorno += " por '" + tituloPesquisa.getTextoPesquisa() + "'";
+					if (tituloPesquisa.getIdiomaTitulo() != null)
+						retorno += " no idioma '" + tituloPesquisa.getIdiomaTitulo().getNomeIdioma() + "'";
+					if (tituloPesquisa.getCampo() != null)
+						retorno += " no campo '" + tituloPesquisa.getCampo().getDescricao() + "'";
+					else
+						retorno += " em todos os campos";
+					if (tituloPesquisa.getTipoTitulo() != null)
+						retorno += " do tipo '" + tituloPesquisa.getTipoTitulo().getNome() + "'";
+				}
+				retorno += "<span style='float: right;'>" + dadosPaginacao + "</span>";
 			}
-			retorno += "<span style='float: right;'>" + dadosPaginacao + "</span>";
+			messages.info(retorno);
+		}else{
+			messages.error("Digite um informação maior no campo texto (Mínimo 3 caracteres)!");
 		}
-		messages.info(retorno);
+		RequestContext.getCurrentInstance().update(Arrays.asList("frm:msgs"));
 	}
 
 	public void onRowSelect(SelectEvent event) throws IOException, SQLException {

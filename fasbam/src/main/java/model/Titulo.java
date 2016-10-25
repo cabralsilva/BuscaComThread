@@ -236,9 +236,8 @@ public class Titulo implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "Titulo [codigo=" + codigo + ", titulo=" + titulo + ", subTitulo=" + subTitulo + ", autorTitulo="
-				+ autorTitulo + ", editoraTitulo=" + editoraTitulo + ", idiomaTitulo=" + idiomaTitulo + ", tipoTitulo="
-				+ tipoTitulo + ", textoPesquisa=" + textoPesquisa + ", campo=" + campo + "]";
+		return "Titulo [titulo=" + titulo + ", subTitulo=" + subTitulo + ", autorTitulo=" + autorTitulo
+				+ ", lstAutores=" + lstAutores + "]";
 	}
 	@Override
 	public int hashCode() {

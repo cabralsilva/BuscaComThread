@@ -97,10 +97,10 @@ public class AutorService {
 		List<Autor> lstAutor = new ArrayList<>();
 		try {
 
-			String sql = "select AutorTitulo.* from AutorTitulo "
-					+ "inner join Titulo on AutorTitulo.CodigoTitulo = Titulo.Codigo " + "where Titulo.Codigo = "
-					+ tituloCodigo;
-
+			String sql = "select AutorTitulo.CodigoAutor, AutorTitulo.NomeAutor, AutorTitulo.AutorPrincipal from AutorTitulo "
+//					+ "inner join Titulo on AutorTitulo.CodigoTitulo = Titulo.Codigo " + "where Titulo.Codigo = "
+					+ "where AutorTitulo.CodigoTitulo = " + tituloCodigo;
+			System.out.println(sql);
 			long tempoInicio = System.currentTimeMillis();
 			ResultSet rs = (ResultSet) ((Statement) sessao.getAttribute("connectionBD")).executeQuery(sql);
 			System.out.println("Tempo Query AUTOR: " + (System.currentTimeMillis() - tempoInicio) + " ms");
